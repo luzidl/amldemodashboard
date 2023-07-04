@@ -6,4 +6,4 @@ These Dashboards for the Neo4j AML & Fraud Demo are meant, to add to the existin
 
 This is aimed to be used as a starting point explaining the data, architecture and data model behind the demo.
 
-![]()
+![](graphics/High-Risk-Geo_Dashbboard.png)
