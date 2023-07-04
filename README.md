@@ -1,6 +1,6 @@
 # Example Dashboard for the Neo4j AML & Fraud Framework Demo (work in progress)
 
-These Dashboards for the Neo4j AML & Fraud Demo are meant, to add to the existing Demo in Hive. The file '''aml-dashboard_v2.json''' in the dashboards directory can be used to import it into NeoDash. Then connect to the AML Demo on Hive using the credentials provided in the demo script. Refer to the NeoDash Documentation for help. You can find it here: [NeoDash Documentation Link](https://neo4j.com/labs/neodash/2.1/user-guide/)
+These Dashboards for the Neo4j AML & Fraud Demo are meant, to add to the existing Demo in Hive. The file ```aml-dashboard_v2.json``` in the dashboards directory can be used to import it into NeoDash. Then connect to the AML Demo on Hive using the credentials provided in the demo script. Refer to the NeoDash Documentation for help. You can find it here: [NeoDash Documentation Link](https://neo4j.com/labs/neodash/2.1/user-guide/)
 
 
 The Dashboard is structured in the following way:
