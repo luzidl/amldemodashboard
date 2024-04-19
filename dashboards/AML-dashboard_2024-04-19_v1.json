@@ -1,0 +1,2164 @@
+{
+  "uuid": "60d78cfa-bee2-479c-885b-7358221cb115",
+  "title": "Neo4j AML Dashboard - Anti Money Laundering Investigation",
+  "version": "2.4",
+  "settings": {
+    "pagenumber": 5,
+    "editable": true,
+    "fullscreenEnabled": false,
+    "parameters": {
+      "neodash_customerName": "Willerson, Rhea",
+      "neodash_accountholder_accountname": "Sarra, Samuele",
+      "neodash_accountholder_accountname_display": "Sarra, Samuele",
+      "neodash_accountholder_accountholderid": 55716,
+      "neodash_accountholder_accountholderid_display": 55716,
+      "neodash_Q1": "MATCH p6 =(st1:StreetAddress)<-[:BUSINESS_ADDRESS]-(n:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:USES_DEVICE]->(:Device)<-[:USES_DEVICE]-(ac:AccountHolder)-[:BUSINESS_ADDRESS]->(st2:StreetAddress) where n<>ac and st1.postalCode<>st2.postalCode",
+      "neodash_businesscustomer_accountholderid": 50637,
+      "neodash_businesscustomer_accountholderid_display": 50637,
+      "neodash_accountholder_accountholderid_2": "",
+      "neodash_accountholder_accountholderid_2_display": "",
+      "neodash_depositaccount_accountholderid": 57636,
+      "neodash_depositaccount_accountholderid_display": 57636,
+      "neodash_watchlist_watchentityname ": "Aimee Peshlakai",
+      "neodash_watchlist_watchentityname2": "Orpha Dragone",
+      "neodash_watchlist_watchentityname_2": "Crier, Brnaby",
+      "neodash_watchlist_watchentityname": "Oldfield, Katie",
+      "neodash_watchlist_watchentityname_display": "Oldfield, Katie",
+      "neodash_depositaccount_accountholderid_5": 48942,
+      "neodash_depositaccount_accountholderid_5_display": 48942
+    }
+  },
+  "pages": [
+    {
+      "title": "AML Demo Overview Dashboard",
+      "reports": [
+        {
+          "title": "AML & Fraud",
+          "query": "# Neo4j AML & Fraud Demo\n",
+          "width": 6,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "text",
+          "selection": {},
+          "settings": {},
+          "id": "b0d8d725-900b-4deb-92d7-f875da457e06"
+        },
+        {
+          "title": "Number of Nodes",
+          "query": "MATCH (n) RETURN count(n)\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 6,
+          "y": 0,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 72,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "description": "Number of Nodes in Demo DB",
+            "monospace": false
+          },
+          "id": "527a13e4-df7c-45f1-93c5-44c186fcea68"
+        },
+        {
+          "title": "Number of Relationships",
+          "query": "MATCH ()-[rel]->() RETURN count(rel)\n\n\n",
+          "width": 10,
+          "height": 2,
+          "x": 14,
+          "y": 0,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 72,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "description": "Number of Relationships in Demo DB",
+            "monospace": false
+          },
+          "id": "d1c74325-cf35-48b6-bad5-ca19e97c3b82"
+        },
+        {
+          "title": "Number of Transactions (total)",
+          "query": "MATCH (n:Transaction) RETURN count(n)\n\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 0,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 72,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "description": "Number of Transactions in Demo DB",
+            "monospace": false
+          },
+          "id": "68e11f86-5632-45cc-80d1-174bb989220b"
+        },
+        {
+          "title": "Cash Transactions",
+          "query": "MATCH (n:Cash) RETURN count(n)\n\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 8,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 72,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "description": "Number of Cash Transactions in Demo DB",
+            "monospace": false
+          },
+          "id": "3294954b-7987-4da6-91bd-36b665856fa6"
+        },
+        {
+          "title": "Number of Customers",
+          "query": "MATCH (n:Customer) RETURN count(n)\n\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 16,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 72,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "description": "Number of Transactions in Demo DB",
+            "monospace": false
+          },
+          "id": "c31d4aa2-21b0-4d3e-9d46-434fbf098ca4"
+        },
+        {
+          "title": "AML Demo Architecture",
+          "query": "![image](https://github.com/luzidl/amldemodashboard/blob/34d2c2d2b7bcccf61e829da2faf2adf071c80d57/AML-Framework_med2.png?raw=true)\n---\n[Large Image](https://github.com/luzidl/amldemodashboard/blob/99eea196de7dcac4160c9d4968abec87920831bb/AML-Framework.png?raw=true)\n\n\n",
+          "width": 24,
+          "height": 10,
+          "x": 0,
+          "y": 4,
+          "type": "text",
+          "selection": {},
+          "settings": {
+            "downloadImageEnabled": false,
+            "fullscreenEnabled": true,
+            "description": "Example Architecture for the AML & Fraud Framework"
+          },
+          "id": "aa4fea81-99f9-4b5d-81e0-bf1f1dfd68e5"
+        },
+        {
+          "title": "AML Data Model (incl. Credit Fraud Data)",
+          "query": "![image](https://github.com/luzidl/amldemodashboard/blob/3070ac32977a253fdbe86e220664aca3dfac86bc/AML-Data-Model_med.png?raw=true)\n---\n[Large Image](https://github.com/luzidl/amldemodashboard/blob/83fa52153c9e5ced922d410b13a24e34c8ea7475/AML-Data-Model.png?raw=true)\n\n\n\n",
+          "width": 24,
+          "height": 12,
+          "x": 0,
+          "y": 14,
+          "type": "text",
+          "selection": {},
+          "settings": {
+            "downloadImageEnabled": false,
+            "fullscreenEnabled": true,
+            "description": "Example Architecture for the AML & Fraud Framework"
+          },
+          "id": "9cf8d319-f179-424d-81bf-5ad98ca38062"
+        }
+      ]
+    },
+    {
+      "title": "AML - Overview by Customer Type and Scenario",
+      "reports": [
+        {
+          "title": "Rapid Movement",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->(:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\nWHERE state.stateCode <> \"\"\nMATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate as startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\nWHERE TotalDeposits > 10000\n        \nMATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate, endDate, da, NumDeposits, TotalDeposits,\ncount(txn.amount) as NumWithdrawals,\nsum(txn.amount) as TotalWithdrawals,\nabs(sum(txn.amount))/TotalDeposits as pctWithdrawal\nWHERE pctWithdrawal > 0.75\n        \nWITH da, \n(CASE \n  WHEN pctWithdrawal >= 0.95 THEN \"1. High\"\n  WHEN 0.85 <= pctWithdrawal < 0.95 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n\n\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "0d4c7412-4853-4783-8bef-64a7b1e20b6b"
+        },
+        {
+          "title": "Rapid Movement",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->(:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\nWHERE state.stateCode <> \"\"\nMATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate as startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\nWHERE TotalDeposits > 10000\n        \nMATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate, endDate, da, NumDeposits, TotalDeposits,\ncount(txn.amount) as NumWithdrawals,\nsum(txn.amount) as TotalWithdrawals,\nabs(sum(txn.amount))/TotalDeposits as pctWithdrawal\nWHERE pctWithdrawal > 0.75\n        \nWITH da, \n(CASE \n  WHEN pctWithdrawal >= 0.95 THEN \"1. High\"\n  WHEN 0.85 <= pctWithdrawal < 0.95 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 2,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "blendMode": "multiply",
+            "animate": false,
+            "refreshButtonEnabled": true,
+            "description": "Shows number of High, Moderate and Low suspicious Rapid Movement Cases.",
+            "motionConfig": "default",
+            "curve": "linearClosed"
+          },
+          "id": "0dc0c1aa-89a1-4fa8-af45-63ed579048fc"
+        },
+        {
+          "title": "Consumers",
+          "query": "# Consumer Fraud Scenarios Overview\n\n\n",
+          "width": 12,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "text",
+          "selection": {},
+          "settings": {
+            "description": "Find all Consumer Customers based Scenario Overview KPIs."
+          },
+          "id": "20e666ac-940a-40bb-a225-a043352b9703"
+        },
+        {
+          "title": "Businesses",
+          "query": "# Business Fraud Scenarios Overview\n\n\n",
+          "width": 12,
+          "height": 2,
+          "x": 12,
+          "y": 0,
+          "type": "text",
+          "selection": {},
+          "settings": {
+            "description": "Find all Business Customer based Scenario Overview KPIs."
+          },
+          "id": "62c959fc-2710-42aa-a7b2-1efa257133d0"
+        },
+        {
+          "title": "Rapid Movement",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n(:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n// WHERE state.stateCode IN stateCodes\nMATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\n  AND NOT toUpper(cu.FinCEN_110_status)=\"ON FILE\"\nWITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\nWHERE TotalDeposits > 100000\n\nMATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate, endDate, da, NumDeposits, TotalDeposits,\ncount(txn.amount) as NumWithdrawals,\nsum(txn.amount) as TotalWithdrawals,\nabs(sum(txn.amount))/TotalDeposits as pctWithdrawal\nWHERE pctWithdrawal > 0.75\n\nWITH da, \n(CASE \n  WHEN pctWithdrawal >= 0.95 THEN \"1. High\"\n  WHEN 0.85 <= pctWithdrawal < 0.95 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(Category) as numAlerts\n\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "aed04356-5191-4518-991b-4a79d375c8f8"
+        },
+        {
+          "title": "Rapid Movement",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n(:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n// WHERE state.stateCode IN stateCodes\nMATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\n  AND NOT toUpper(cu.FinCEN_110_status)=\"ON FILE\"\nWITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\nWHERE TotalDeposits > 100000\n\nMATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\nWHERE startDate <= txn.transactionDate <= endDate\nWITH startDate, endDate, da, NumDeposits, TotalDeposits,\ncount(txn.amount) as NumWithdrawals,\nsum(txn.amount) as TotalWithdrawals,\nabs(sum(txn.amount))/TotalDeposits as pctWithdrawal\nWHERE pctWithdrawal > 0.75\n\nWITH da, \n(CASE \n  WHEN pctWithdrawal >= 0.95 THEN \"1. High\"\n  WHEN 0.85 <= pctWithdrawal < 0.95 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(Category) as numAlerts\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 2,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "blendMode": "multiply",
+            "animate": false,
+            "refreshButtonEnabled": true,
+            "description": "Shows number of High, Moderate and Low suspicious Rapid Movement Cases."
+          },
+          "id": "46b31599-0eb6-4f0c-8eed-f0d30d4a76d9"
+        },
+        {
+          "title": "Accumulation",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        //WHERE state.stateCode IN stateCodes\n        MATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction) \n        WHERE startDate <= txn.transactionDate <= endDate\n        \n        WITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits \n        WHERE TotalDeposits > 25000 \n        MATCH (da)-[:WITHDRAWALS]->(txn:Transaction) \n        WHERE startDate <= txn.transactionDate <= endDate \n        WITH startDate, endDate, da, NumDeposits, TotalDeposits, \n          count(txn.amount) as NumWithdrawals,\n          sum(txn.amount) as TotalWithdrawals,\n          abs(sum(txn.amount))/TotalDeposits as pctWithdrawal \n        WHERE pctWithdrawal <= 0.25\n\n        WITH da, \n          (CASE \n            WHEN pctWithdrawal <= 0.08 THEN '1. High'\n            WHEN 0.08 < pctWithdrawal < 0.15 THEN '2. Moderate'\n  ELSE '3. Low'\n          END) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 6,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "db84324b-b685-4d5a-b6dd-d175856ae951"
+        },
+        {
+          "title": "Accumulation",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        //WHERE state.stateCode IN stateCodes\n        MATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction) \n        WHERE startDate <= txn.transactionDate <= endDate\n        \n        WITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits \n        WHERE TotalDeposits > 25000 \n        MATCH (da)-[:WITHDRAWALS]->(txn:Transaction) \n        WHERE startDate <= txn.transactionDate <= endDate \n        WITH startDate, endDate, da, NumDeposits, TotalDeposits, \n          count(txn.amount) as NumWithdrawals,\n          sum(txn.amount) as TotalWithdrawals,\n          abs(sum(txn.amount))/TotalDeposits as pctWithdrawal \n        WHERE pctWithdrawal <= 0.25\n\n        WITH da, \n          (CASE \n            WHEN pctWithdrawal <= 0.08 THEN '1. High'\n            WHEN 0.08 < pctWithdrawal < 0.15 THEN '2. Moderate'\n  ELSE '3. Low'\n          END) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 6,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "blendMode": "multiply",
+            "animate": false,
+            "refreshButtonEnabled": true,
+            "description": "Shows number of High, Moderate and Low suspicious Rapid Movement Cases.",
+            "motionConfig": "default",
+            "curve": "linearClosed"
+          },
+          "id": "84f4d66c-8da5-40ea-9172-1f99214a5009"
+        },
+        {
+          "title": "Accumulation",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n       // WHERE state.stateCode IN stateCodes\n        MATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n          AND NOT toUpper(cu.FinCEN_110_status)='ON FILE'\n        WITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\n        WHERE TotalDeposits > 250000\n        MATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH startDate, endDate, da, NumDeposits, TotalDeposits,\n          count(txn.amount) as NumWithdrawals,\n          sum(txn.amount) as TotalWithdrawals,\n          abs(sum(txn.amount))/TotalDeposits as pctWithdrawal\n        WHERE pctWithdrawal <= 0.25\n        \n        WITH da, \n          (CASE \n            WHEN pctWithdrawal <= 0.08 THEN '1. High'\n            WHEN 0.08 < pctWithdrawal < 0.15 THEN '2. Moderate'\n            ELSE '3. Low'\n          END) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 6,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "9e888654-534c-44ab-970c-edc5b12d3b18"
+        },
+        {
+          "title": "Accumulation",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (cu:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n       // WHERE state.stateCode IN stateCodes\n        MATCH (cu)-[:HAS_ACCOUNT]->(da:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n          AND NOT toUpper(cu.FinCEN_110_status)='ON FILE'\n        WITH startDate, endDate, da, count(txn.amount) as NumDeposits, sum(txn.amount) as TotalDeposits\n        WHERE TotalDeposits > 250000\n        MATCH (da)-[:WITHDRAWALS]->(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH startDate, endDate, da, NumDeposits, TotalDeposits,\n          count(txn.amount) as NumWithdrawals,\n          sum(txn.amount) as TotalWithdrawals,\n          abs(sum(txn.amount))/TotalDeposits as pctWithdrawal\n        WHERE pctWithdrawal <= 0.25\n        \n        WITH da, \n          (CASE \n            WHEN pctWithdrawal <= 0.08 THEN '1. High'\n            WHEN 0.08 < pctWithdrawal < 0.15 THEN '2. Moderate'\n            ELSE '3. Low'\n          END) as Category\nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 6,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "blendMode": "multiply",
+            "animate": false,
+            "refreshButtonEnabled": true,
+            "description": "Shows number of High, Moderate and Low suspicious Rapid Movement Cases.",
+            "motionConfig": "default",
+            "curve": "linearClosed"
+          },
+          "id": "293b616f-6139-463c-8b14-0b5f642556b3"
+        },
+        {
+          "title": "Concentration",
+          "query": "WITH date(\"2019-12-01\") as vStartDate, date(\"2019-12-31\") as vEndDate, 6500 as vThreshold\nMATCH (custB:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n       // WHERE state.stateCode IN stateCodes\n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB:DepositAccount)-[:WITHDRAWALS]->\n            (txnB:Transaction)-[:DEBITS|INTERNAL_XFER|RECEIVES_WIRE]->(acctC)<-[:HAS_ACCOUNT]-(custC:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND abs(txnB.amount) >= vThreshold\n          AND (\n              (NOT (custB)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n              OR ((custB)-[:IS_LISTED_ON]->(:WatchList))\n            OR (NOT (custC)-[:IS_LEGAL_ENTITY]->(:LegalEntity))\n            OR (NOT (custC)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custC:BusinessCustomer and custC.FinCEN_110_status<>\"on file\")\n            OR ((custC)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH vStartDate, vEndDate, vThreshold, custB, acctB\n          , count(txnB.amount) as numWithdrawals\n          , abs(sum(txnB.amount)) as sumWithdrawals\n          , count(distinct custC) as numTargets\n        \n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB)<-[:DEPOSITS]-(txnB:Transaction)<-[:CREDITS|INTERNAL_XFER|SENDS_WIRE]-\n          (acctA)<-[:HAS_ACCOUNT]-(custA:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND ((NOT (custA)-[:IS_LEGAL_ENTITY]->(:LegalEntity))\n            OR (NOT (custA)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custA:BusinessCustomer and custA.FinCEN_110_status<>\"on file\")\n            OR ((custA)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH custB, acctB, numTargets, numWithdrawals, sumWithdrawals\n          , count(txnB.amount) as numDeposits\n          , sum(txnB.amount) as sumDeposits\n          , count(distinct custA) as numSources\n        \n        WHERE sumDeposits >= sumWithdrawals\n          AND sumDeposits*0.85 <= sumWithdrawals\n          AND numDeposits > numWithdrawals\n          AND numSources > numTargets\n        WITH custB, (CASE\n          WHEN sumDeposits > 15000 THEN \"1. High\"\n          WHEN 8500 < sumDeposits <= 15000 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\n        END) as Category\n\nRETURN Category, count(custB) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 10,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "8c648f25-a14e-43e4-901e-020cb88f2440"
+        },
+        {
+          "title": "Concentration",
+          "query": "WITH date(\"2019-12-01\") as vStartDate, date(\"2019-12-31\") as vEndDate, 6500 as vThreshold\nMATCH (custB:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n       // WHERE state.stateCode IN stateCodes\n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB:DepositAccount)-[:WITHDRAWALS]->\n            (txnB:Transaction)-[:DEBITS|INTERNAL_XFER|RECEIVES_WIRE]->(acctC)<-[:HAS_ACCOUNT]-(custC:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND abs(txnB.amount) >= vThreshold\n          AND (\n              (NOT (custB)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n              OR ((custB)-[:IS_LISTED_ON]->(:WatchList))\n            OR (NOT (custC)-[:IS_LEGAL_ENTITY]->(:LegalEntity))\n            OR (NOT (custC)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custC:BusinessCustomer and custC.FinCEN_110_status<>\"on file\")\n            OR ((custC)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH vStartDate, vEndDate, vThreshold, custB, acctB\n          , count(txnB.amount) as numWithdrawals\n          , abs(sum(txnB.amount)) as sumWithdrawals\n          , count(distinct custC) as numTargets\n        \n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB)<-[:DEPOSITS]-(txnB:Transaction)<-[:CREDITS|INTERNAL_XFER|SENDS_WIRE]-\n          (acctA)<-[:HAS_ACCOUNT]-(custA:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND ((NOT (custA)-[:IS_LEGAL_ENTITY]->(:LegalEntity))\n            OR (NOT (custA)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custA:BusinessCustomer and custA.FinCEN_110_status<>\"on file\")\n            OR ((custA)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH custB, acctB, numTargets, numWithdrawals, sumWithdrawals\n          , count(txnB.amount) as numDeposits\n          , sum(txnB.amount) as sumDeposits\n          , count(distinct custA) as numSources\n        \n        WHERE sumDeposits >= sumWithdrawals\n          AND sumDeposits*0.85 <= sumWithdrawals\n          AND numDeposits > numWithdrawals\n          AND numSources > numTargets\n        WITH custB, (CASE\n          WHEN sumDeposits > 15000 THEN \"1. High\"\n          WHEN 8500 < sumDeposits <= 15000 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\n        END) as Category\n\nRETURN Category, count(custB) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 10,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "91a92dba-9cd2-4642-8b5c-2c6e80ee68fb"
+        },
+        {
+          "title": "Concentration",
+          "query": "WITH date(\"2019-12-01\") as vStartDate, date(\"2019-12-31\") as vEndDate, 50000 as vThreshold\nMATCH (custB:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB:DepositAccount)-[:WITHDRAWALS]->\n            (txnB:Transaction)-[:DEBITS|INTERNAL_XFER|RECEIVES_WIRE]->(acctC)<-[:HAS_ACCOUNT]-(custC:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND abs(txnB.amount) >= vThreshold\n          AND ((custB.FinCEN_110_status <> \"on file\")\n            OR (NOT (custC)-[:IS_LEGAL_ENTITY]->(:LegalEntity)) \n            OR (NOT (custC)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custC:BusinessCustomer and custC.FinCEN_110_status<>\"on file\")\n            OR ((custC)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH vStartDate, vEndDate, vThreshold, custB, acctB\n          , count(txnB.amount) as numWithdrawals\n          , abs(sum(txnB.amount)) as sumWithdrawals\n          , count(distinct custC) as numTargets\n        \n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB)<-[:DEPOSITS]-(txnB:Transaction)<-[:CREDITS|INTERNAL_XFER|SENDS_WIRE]-(acctA)<-[:HAS_ACCOUNT]-(custA:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND (\n              (NOT (custA)-[:IS_LEGAL_ENTITY]->(:LegalEntity)) \n            OR (NOT (custA)-[:HAS_GOVT_ID]->(:GovtIssuedID)) \n            OR (custA:BusinessCustomer and custA.FinCEN_110_status<>\"on file\")\n            OR ((custA)-[:IS_LISTED_ON]->(:WatchList)) \n          )\n        WITH custB, acctB, numTargets, numWithdrawals, sumWithdrawals\n          , count(txnB.amount) as numDeposits\n          , sum(txnB.amount) as sumDeposits\n          , count(distinct custA) as numSources\n        \n        WHERE sumDeposits >= sumWithdrawals\n          AND sumDeposits*0.85 <= sumWithdrawals\n          AND numDeposits >= numWithdrawals * 5\n          AND numSources >= numTargets * 5\n        \n        WITH custB, (CASE\n          WHEN sumDeposits > 200000 THEN \"1. High\"\n          WHEN 100000 < sumDeposits <= 200000 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(custB) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 10,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "cbd19335-c8a4-41c3-ba34-7445fcd6098a"
+        },
+        {
+          "title": "Concentration",
+          "query": "WITH date(\"2019-12-01\") as vStartDate, date(\"2019-12-31\") as vEndDate, 50000 as vThreshold\nMATCH (custB:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB:DepositAccount)-[:WITHDRAWALS]->\n            (txnB:Transaction)-[:DEBITS|INTERNAL_XFER|RECEIVES_WIRE]->(acctC)<-[:HAS_ACCOUNT]-(custC:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND abs(txnB.amount) >= vThreshold\n          AND ((custB.FinCEN_110_status <> \"on file\")\n            OR (NOT (custC)-[:IS_LEGAL_ENTITY]->(:LegalEntity)) \n            OR (NOT (custC)-[:HAS_GOVT_ID]->(:GovtIssuedID))\n            OR (custC:BusinessCustomer and custC.FinCEN_110_status<>\"on file\")\n            OR ((custC)-[:IS_LISTED_ON]->(:WatchList))\n          )\n        WITH vStartDate, vEndDate, vThreshold, custB, acctB\n          , count(txnB.amount) as numWithdrawals\n          , abs(sum(txnB.amount)) as sumWithdrawals\n          , count(distinct custC) as numTargets\n        \n        MATCH (custB)-[:HAS_ACCOUNT]->(acctB)<-[:DEPOSITS]-(txnB:Transaction)<-[:CREDITS|INTERNAL_XFER|SENDS_WIRE]-(acctA)<-[:HAS_ACCOUNT]-(custA:AccountHolder)\n        WHERE vStartDate <= txnB.transactionDate <= vEndDate\n          AND (\n              (NOT (custA)-[:IS_LEGAL_ENTITY]->(:LegalEntity)) \n            OR (NOT (custA)-[:HAS_GOVT_ID]->(:GovtIssuedID)) \n            OR (custA:BusinessCustomer and custA.FinCEN_110_status<>\"on file\")\n            OR ((custA)-[:IS_LISTED_ON]->(:WatchList)) \n          )\n        WITH custB, acctB, numTargets, numWithdrawals, sumWithdrawals\n          , count(txnB.amount) as numDeposits\n          , sum(txnB.amount) as sumDeposits\n          , count(distinct custA) as numSources\n        \n        WHERE sumDeposits >= sumWithdrawals\n          AND sumDeposits*0.85 <= sumWithdrawals\n          AND numDeposits >= numWithdrawals * 5\n          AND numSources >= numTargets * 5\n        \n        WITH custB, (CASE\n          WHEN sumDeposits > 200000 THEN \"1. High\"\n          WHEN 100000 < sumDeposits <= 200000 THEN \"2. Moderate\"\n  ELSE \"3. Low\"\nEND) as Category\nRETURN Category, count(custB) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 10,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "b684e151-474c-4a58-8efb-0966e6a4fba7"
+        },
+        {
+          "title": "High Risk Geo",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]->(da:DepositAccount)-[:WITHDRAWALS]->\n                (xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->\n            (iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country)\n        WHERE startDate <= xfer.transactionDate <= endDate\n          AND cty.fraudScore > 0.1\n          AND left(iban.ibanNumber,2)=cty.countryCode\n        // collect the accounts and xfers\n        WITH ah, sum(xfer.amount) as wireAmount, max(cty.fraudScore) as riskScore\n        WITH ah, wireAmount, riskScore, \n          (CASE \n            WHEN riskScore > 0.6 OR wireAmount >= 50000 THEN '1. High'\n            WHEN riskScore > 0.3 OR 10000 < wireAmount < 50000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category\n  \nRETURN Category, count(*) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 14,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "bea1d523-cad6-4192-af99-77abadcd6dce"
+        },
+        {
+          "title": "High Risk Geo",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]->(da:DepositAccount)-[:WITHDRAWALS]->\n                (xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->\n            (iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country)\n        WHERE startDate <= xfer.transactionDate <= endDate\n          AND cty.fraudScore > 0.1\n          AND left(iban.ibanNumber,2)=cty.countryCode\n        // collect the accounts and xfers\n        WITH ah, sum(xfer.amount) as wireAmount, max(cty.fraudScore) as riskScore\n        WITH ah, wireAmount, riskScore, \n          (CASE \n            WHEN riskScore > 0.6 OR wireAmount >= 50000 THEN '1. High'\n            WHEN riskScore > 0.3 OR 10000 < wireAmount < 50000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category\n  \nRETURN Category, count(*) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 14,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "b069d595-0300-499e-a4e3-fb6bf1024de2"
+        },
+        {
+          "title": "High Risk Geo",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]->(da:DepositAccount)-[:WITHDRAWALS]->\n          (xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->\n            (iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country)\n        WHERE startDate <= xfer.transactionDate <= endDate\n          AND cty.fraudScore > 0.1\n          AND left(iban.ibanNumber,2)=cty.countryCode\n        // collect the accounts and xfers\n        WITH ah, sum(xfer.amount) as wireAmount, max(cty.fraudScore) as riskScore\n        WITH ah, wireAmount, riskScore, \n          (CASE \n            WHEN riskScore > 0.6 OR wireAmount >= 250000 THEN '1. High'\n            WHEN riskScore > 0.3 OR 150000 < wireAmount < 250000 THEN '2. Moderate'\n  ELSE '3. Low'\nEND) as Category\nRETURN Category, count(*) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 14,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "dc6400c4-e2a5-46fc-8032-ad36af6e93f3"
+        },
+        {
+          "title": "High Risk Geo",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]->(da:DepositAccount)-[:WITHDRAWALS]->\n          (xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->\n            (iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country)\n        WHERE startDate <= xfer.transactionDate <= endDate\n          AND cty.fraudScore > 0.1\n          AND left(iban.ibanNumber,2)=cty.countryCode\n        // collect the accounts and xfers\n        WITH ah, sum(xfer.amount) as wireAmount, max(cty.fraudScore) as riskScore\n        WITH ah, wireAmount, riskScore, \n          (CASE \n            WHEN riskScore > 0.6 OR wireAmount >= 250000 THEN '1. High'\n            WHEN riskScore > 0.3 OR 150000 < wireAmount < 250000 THEN '2. Moderate'\n  ELSE '3. Low'\nEND) as Category\nRETURN Category, count(*) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 14,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "b5cb4196-0116-4508-b121-2b805844d45e"
+        },
+        {
+          "title": "High Risk Entity",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)-[:WITHDRAWALS]->(txn:Transaction)\n                -[:INTERNAL_XFER|RECEIVES_WIRE|DEBITS]->()<-[:HAS_ACCOUNT]-(bad:AccountHolder)-[:IS_LISTED_ON]->(wl:WatchList)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH ah,\n          (CASE \n            WHEN wl.riskFactor > 0.7 THEN '1. High'\n            WHEN 0.5 <= wl.riskFactor <= 0.7 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 18,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "2ac67335-f9d4-45de-8125-7f79cc095535"
+        },
+        {
+          "title": "High Risk Entity",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)-[:WITHDRAWALS]->(txn:Transaction)\n                -[:INTERNAL_XFER|RECEIVES_WIRE|DEBITS]->()<-[:HAS_ACCOUNT]-(bad:AccountHolder)-[:IS_LISTED_ON]->(wl:WatchList)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH ah,\n          (CASE \n            WHEN wl.riskFactor > 0.7 THEN '1. High'\n            WHEN 0.5 <= wl.riskFactor <= 0.7 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 18,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "a3e21be0-035b-46ce-8f75-f10ca7d1ac87"
+        },
+        {
+          "title": "High Risk Entity",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)-[:WITHDRAWALS]->(txn:Transaction)\n                -[:INTERNAL_XFER|RECEIVES_WIRE|DEBITS]->()<-[:HAS_ACCOUNT]-(bad:AccountHolder)-[:IS_LISTED_ON]->(wl:WatchList)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH ah,\n          (CASE \n            WHEN wl.riskFactor > 0.7 THEN '1. High'\n            WHEN 0.5 <= wl.riskFactor <= 0.7 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 18,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "c58fdee9-825a-475e-99b3-27cf4749ddb2"
+        },
+        {
+          "title": "High Risk Entity",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)-[:WITHDRAWALS]->(txn:Transaction)\n                -[:INTERNAL_XFER|RECEIVES_WIRE|DEBITS]->()<-[:HAS_ACCOUNT]-(bad:AccountHolder)-[:IS_LISTED_ON]->(wl:WatchList)\n        WHERE startDate <= txn.transactionDate <= endDate\n        WITH ah,\n          (CASE \n            WHEN wl.riskFactor > 0.7 THEN '1. High'\n            WHEN 0.5 <= wl.riskFactor <= 0.7 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 18,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "bf07cbe1-c07f-4709-baa0-83d514e7da3b"
+        },
+        {
+          "title": "Unknown Owner",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n        (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n      // WHERE state.stateCode IN stateCodes\n      MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n      WHERE startDate <= txn.transactionDate <= endDate\n        AND (NOT (ah)-[:HAS_GOVT_ID]->(:GovtIssuedID) OR NOT (ah)<-[:EMPLOYEE_ACCOUNT]-(:Employee))\n      WITH ah, sum(txn.amount) as sumDeposits\n      WITH ah, \n        (CASE\n          WHEN sumDeposits > 50000 THEN '1. High'\n          WHEN 10000 <= sumDeposits <= 50000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 22,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "d3878f41-1b06-49c5-9372-3a555b72ae5b"
+        },
+        {
+          "title": "Unknown Owner",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n        (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n      // WHERE state.stateCode IN stateCodes\n      MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n      WHERE startDate <= txn.transactionDate <= endDate\n        AND (NOT (ah)-[:HAS_GOVT_ID]->(:GovtIssuedID) OR NOT (ah)<-[:EMPLOYEE_ACCOUNT]-(:Employee))\n      WITH ah, sum(txn.amount) as sumDeposits\n      WITH ah, \n        (CASE\n          WHEN sumDeposits > 50000 THEN '1. High'\n          WHEN 10000 <= sumDeposits <= 50000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 22,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "bd6ad25c-4d2d-4bbd-baa9-cfcc8a320108"
+        },
+        {
+          "title": "Unknown Owner",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n        (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n      // WHERE state.stateCode IN stateCodes\n      MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n      WHERE startDate <= txn.transactionDate <= endDate\n        AND NOT (ah)-[:IS_LEGAL_ENTITY]->(:LegalEntity)\n      WITH ah, sum(txn.amount) as sumDeposits\n      WITH ah, \n        (CASE\n          WHEN sumDeposits > 250000 THEN '1. High'\n          WHEN 150000 <= sumDeposits <= 250000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 22,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "47c9e19e-34b5-46ff-af19-c897eafaa90e"
+        },
+        {
+          "title": "Unknown Owner",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n        (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State) \n      // WHERE state.stateCode IN stateCodes\n      MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n      WHERE startDate <= txn.transactionDate <= endDate\n        AND NOT (ah)-[:IS_LEGAL_ENTITY]->(:LegalEntity)\n      WITH ah, sum(txn.amount) as sumDeposits\n      WITH ah, \n        (CASE\n          WHEN sumDeposits > 250000 THEN '1. High'\n          WHEN 150000 <= sumDeposits <= 250000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 22,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "1dfeaf4f-1df4-452c-92a5-a5ad9b47a712"
+        },
+        {
+          "title": "Cash Intensive Business",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Cash:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n        //  AND (NOT (ah)-[:HAS_GOVT_ID]->(:GovtIssuedID) OR NOT (ah)<-[:EMPLOYEE_ACCOUNT]-(:Employee))\n        WITH ah, sum(txn.amount) as sumDeposits, count(txn) as numDeposits\n        WHERE numDeposits > 4\n        WITH ah, \n          (CASE \n            WHEN sumDeposits > 50000 AND numDeposits > 7 THEN '1. High'\n            WHEN 10000 <= sumDeposits <= 50000 AND numDeposits >5 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 26,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "afa17156-b14d-43cb-be85-c4720d57fb55"
+        },
+        {
+          "title": "Cash Intensive Business",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:Customer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Cash:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n        //  AND (NOT (ah)-[:HAS_GOVT_ID]->(:GovtIssuedID) OR NOT (ah)<-[:EMPLOYEE_ACCOUNT]-(:Employee))\n        WITH ah, sum(txn.amount) as sumDeposits, count(txn) as numDeposits\n        WHERE numDeposits > 4\n        WITH ah, \n          (CASE \n            WHEN sumDeposits > 50000 AND numDeposits > 7 THEN '1. High'\n            WHEN 10000 <= sumDeposits <= 50000 AND numDeposits >5 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 26,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "8af16716-182a-4874-baed-9ebfdf2341cf"
+        },
+        {
+          "title": "Cash Intensive Business",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n          AND NOT ah.FinCEN_110_status='on file'\n        //  AND NOT (ah)-[:IS_LEGAL_ENTITY]->(:LegalEntity)\n        WITH ah, sum(txn.amount) as sumDeposits\n        WITH ah,\n          (CASE \n            WHEN sumDeposits > 250000 THEN '1. High'\n            WHEN 150000 <= sumDeposits <= 250000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 12,
+          "y": 26,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "3b0331ec-eef1-4a9f-9e3a-e3ad3612216c"
+        },
+        {
+          "title": "Cash Intensive Business",
+          "query": "WITH date(\"2019-12-01\") as startDate, date(\"2019-12-31\") as endDate\nMATCH (ah:BusinessCustomer:AccountHolder)-[:CURRENT_RESIDENCE|BUSINESS_ADDRESS]->(:StreetAddress)-[:IN_POSTALCODE]->\n          (:PostalCode)-[:IN_CITY]-(:City)-[:IN_STATE]->(state:State)\n        // WHERE state.stateCode IN stateCodes\n        MATCH (ah)-[:HAS_ACCOUNT]-(acct:DepositAccount)<-[:DEPOSITS]-(txn:Transaction)\n        WHERE startDate <= txn.transactionDate <= endDate\n          AND NOT ah.FinCEN_110_status='on file'\n        //  AND NOT (ah)-[:IS_LEGAL_ENTITY]->(:LegalEntity)\n        WITH ah, sum(txn.amount) as sumDeposits\n        WITH ah,\n          (CASE \n            WHEN sumDeposits > 250000 THEN '1. High'\n            WHEN 150000 <= sumDeposits <= 250000 THEN '2. Moderate'\n  ELSE '3. Low'         \nEND) as Category  \nRETURN Category, count(Category) as numAlerts ORDER BY Category\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 26,
+          "type": "radar",
+          "selection": {
+            "index": "Category",
+            "values": [
+              "numAlerts"
+            ]
+          },
+          "settings": {
+            "styleRules": [
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell color",
+                "customizationValue": "#fb0505"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "2.",
+                "customization": "cell color",
+                "customizationValue": "#fbf50d"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "3.",
+                "customization": "cell color",
+                "customizationValue": "#34f30e"
+              },
+              {
+                "field": "Category",
+                "condition": "contains",
+                "value": "1.",
+                "customization": "cell text color",
+                "customizationValue": "white"
+              }
+            ],
+            "columnWidths": "[0.2,0.15,0]",
+            "refreshButtonEnabled": true
+          },
+          "id": "7bd34ad6-f31f-45fc-8bdf-b259e86e7613"
+        }
+      ]
+    },
+    {
+      "title": "AML - Investigate by Shared Personal Info",
+      "reports": [
+        {
+          "title": "Search by account holder ID",
+          "query": "MATCH (n:`AccountHolder`) \nWHERE toLower(toString(n.`accountHolderID`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`accountHolderID` as value,  n.`accountHolderID` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 12,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "AccountHolder",
+            "propertyType": "accountHolderID",
+            "propertyTypeDisplay": "accountHolderID",
+            "parameterName": "neodash_accountholder_accountholderid",
+            "description": "Type a number in order to find specific Customer ID (e.g. 55716 - Trioptics, 52121 - Hunters Run ..., 57907, etc.)"
+          },
+          "id": "dfaf1973-b1db-439d-b39e-6775cb7aa826"
+        },
+        {
+          "title": "Customer Information",
+          "query": "MATCH (cu1:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[]->(ad:StreetAddress)\nReturn cu1.accountHolderID AS ID, cu1.accountName AS Name, ad.cityName AS City, ad.postalCode AS ZipCode, cu1.fraudScore AS FraudScore;\n\n\n",
+          "width": 12,
+          "height": 4,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "transposed": true
+          },
+          "id": "d18ea40b-9d6a-4e79-b2d1-ee25fd7b1205"
+        },
+        {
+          "title": "Customer Exploration - Shared EMail",
+          "query": "MATCH p1=(cu1:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:HAS_EMAIL]->()<-[:HAS_EMAIL]-(cu2:AccountHolder) WHERE id(cu1)<>id(cu2)\nReturn p1\n\n\n",
+          "width": 10,
+          "height": 8,
+          "x": 0,
+          "y": 6,
+          "type": "graph",
+          "selection": {
+            "AccountHolder": "(label)",
+            "BusinessCustomer": "(label)",
+            "Email": "(label)"
+          },
+          "settings": {
+            "layout": "force-directed",
+            "showPropertiesOnHover": true,
+            "description": "This graph shows, customers or businesses sharing the same email address."
+          },
+          "id": "4bb14bbb-1589-4f7b-b4b6-543ea46deaeb",
+          "schema": [
+            [
+              "AccountHolder",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "BusinessCustomer",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "Email",
+              "emailAddress"
+            ]
+          ]
+        },
+        {
+          "title": "Customer Exploration - Shared EMail + same Devices used to access Account",
+          "query": "MATCH p1=(cu1:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:HAS_EMAIL]->()<-[:HAS_EMAIL]-(cu2:AccountHolder) WHERE id(cu1)<>id(cu2)\nMATCH p6 =(st1:StreetAddress)<-[:BUSINESS_ADDRESS]-(n:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:USES_DEVICE]->(:Device)<-[:USES_DEVICE]-(ac:AccountHolder)-[:BUSINESS_ADDRESS]->(st2:StreetAddress) where n<>ac and st1.postalCode<>st2.postalCode\nReturn p1,p6\n\n\n",
+          "width": 14,
+          "height": 8,
+          "x": 10,
+          "y": 6,
+          "type": "graph",
+          "selection": {
+            "AccountHolder": "(label)",
+            "BusinessCustomer": "(label)",
+            "Email": "(label)",
+            "StreetAddress": "(label)",
+            "Device": "(label)",
+            "Browser": "(label)"
+          },
+          "settings": {
+            "layout": "force-directed",
+            "showPropertiesOnHover": true,
+            "description": "This graph shows, customers or businesses sharing the same email address and accessing the same account with different devices."
+          },
+          "id": "d95d4a82-e5bd-40eb-9c46-4d14ed5b9913",
+          "schema": [
+            [
+              "AccountHolder",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "BusinessCustomer",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "Email",
+              "emailAddress"
+            ],
+            [
+              "StreetAddress",
+              "cityName",
+              "streetAddress",
+              "createdBy",
+              "countryCode",
+              "postalCode"
+            ],
+            [
+              "Device",
+              "deviceType",
+              "deviceID"
+            ],
+            [
+              "Browser",
+              "deviceType",
+              "deviceID"
+            ]
+          ]
+        },
+        {
+          "title": "Customer Exploration - ... and access from different Geo-Coordinates",
+          "query": "MATCH p1=(cu1:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:HAS_EMAIL]->()<-[:HAS_EMAIL]-(cu2:AccountHolder) WHERE id(cu1)<>id(cu2)\nMATCH p6 =(st1:StreetAddress)<-[:BUSINESS_ADDRESS]-(n:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:USES_DEVICE]->(:Device)<-[:USES_DEVICE]-(ac:AccountHolder)-[:BUSINESS_ADDRESS]->(st2:StreetAddress) where n<>ac and st1.postalCode<>st2.postalCode\nMATCH p3= (s:StreetAddress)<-[:BUSINESS_ADDRESS]-(ah:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[:ONLINE_SESSIONS]->(asc:AccountSession)-[:SESSION_IP]->(:IPAddress)-[:IP_IN_CITY]->(c:City) where c.cityName<>s.cityName and date(\"2019-08-01\")<=date(asc.sessionDateTime)<=date(\"2019-09-05\") \nReturn p1,p6,p3\n\n\n",
+          "width": 24,
+          "height": 10,
+          "x": 0,
+          "y": 14,
+          "type": "graph",
+          "selection": {
+            "AccountHolder": "(label)",
+            "BusinessCustomer": "(label)",
+            "Email": "(label)",
+            "StreetAddress": "(label)",
+            "Device": "(label)",
+            "Browser": "(label)",
+            "AccountSession": "(label)",
+            "IPAddress": "(label)",
+            "City": "(label)"
+          },
+          "settings": {
+            "layout": "force-directed",
+            "showPropertiesOnHover": true,
+            "description": "This graph shows, customers or businesses sharing the same email address and accessing the same account with different devices and different geo locations!"
+          },
+          "id": "4a85d305-2739-47f9-ba48-0c11a4ddfcb9",
+          "schema": [
+            [
+              "AccountHolder",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "BusinessCustomer",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "entityResolution",
+              "accountName",
+              "FinCEN_110_status",
+              "businessName"
+            ],
+            [
+              "Email",
+              "emailAddress"
+            ],
+            [
+              "StreetAddress",
+              "cityName",
+              "streetAddress",
+              "createdBy",
+              "countryCode",
+              "postalCode"
+            ],
+            [
+              "Device",
+              "deviceType",
+              "deviceID"
+            ],
+            [
+              "Browser",
+              "deviceType",
+              "deviceID"
+            ],
+            [
+              "AccountSession",
+              "accountHolderID",
+              "accountID",
+              "sessionDateTime"
+            ],
+            [
+              "IPAddress",
+              "ipAddress",
+              "ip2Int"
+            ],
+            [
+              "City",
+              "endIP",
+              "CITYNAME",
+              "startIP",
+              "cityName",
+              "countryCode",
+              "latitude",
+              "stateCode",
+              "longitude",
+              "createdDate"
+            ]
+          ]
+        },
+        {
+          "title": "Company/Customer names matching by \"Entity Resolutions\"",
+          "query": "MATCH (cu1:AccountHolder{accountHolderID:$neodash_accountholder_accountholderid})-[rel:ENTITY_RESOLUTION]->(cu2:AccountHolder) WHERE id(cu1)<>id(cu2)\nRETURN cu1, rel, cu2;\n\n",
+          "width": 12,
+          "height": 6,
+          "x": 12,
+          "y": 0,
+          "type": "sankey",
+          "selection": {
+            "AccountHolder": "accountName",
+            "BusinessCustomer": "accountName"
+          },
+          "settings": {
+            "labelProperty": "attributeScore",
+            "legend": false,
+            "labelPosition": "inside",
+            "description": "This graphics shows customers or businesses identified as potentially the same using different entity resolution scores. "
+          },
+          "id": "3b0a0f03-753f-4921-8a0e-9079921cfcc0"
+        }
+      ]
+    },
+    {
+      "title": "AML - Investigate Layered Concentrations",
+      "reports": [
+        {
+          "title": "Search Deposit Account ID",
+          "query": "MATCH (n:`DepositAccount`) \nWHERE toLower(toString(n.`accountHolderID`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`accountHolderID` as value,  n.`accountHolderID` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 6,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "description": "Search Corporate Deposit Account ID (e.g. 57636, 56464, 55164, 55976, etc.)",
+            "entityType": "DepositAccount",
+            "propertyType": "accountHolderID",
+            "propertyTypeDisplay": "accountHolderID",
+            "parameterName": "neodash_depositaccount_accountholderid"
+          },
+          "id": "e01678f7-4a32-450f-bc4b-972f6e2ba664"
+        },
+        {
+          "title": "Layered concentration graph",
+          "query": "MATCH p4=(cu1:AccountHolder)-[:HAS_ACCOUNT]->(da1:DepositAccount)-[:WITHDRAWALS]->(txn1)-[:DEBITS]->(acctB)-[:CREDITS]->(txn2)-[:DEPOSITS]->(da2:DepositAccount{accountHolderID:$neodash_depositaccount_accountholderid})<-[:HAS_ACCOUNT]-(cu2:AccountHolder)\nWHERE id(da1)<>id(da2) \nAND txn1.transactionDate <= date(\"2019-08-01\") \nAND txn1.transactionDate >= date(\"2019-06-27\") \nAND txn2.transactionDate>=txn1.transactionDate \nAND duration.inDays(txn1.transactionDate,txn2.transactionDate).days < 30.000000 \nAND txn2.amount > abs(txn1.amount) * 0.600000 \nAND txn2.amount < abs(txn1.amount) \nAND abs(txn1.amount) > 500.000000\nReturn p4\n\n\n",
+          "width": 18,
+          "height": 8,
+          "x": 6,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "Customer": "(label)",
+            "AccountHolder": "(label)",
+            "DepositAccount": "(label)",
+            "Transaction": "(label)",
+            "ACH": "(label)",
+            "ExternalAccount": "(label)",
+            "BusinessCustomer": "(label)"
+          },
+          "settings": {
+            "layout": "force-directed",
+            "showPropertiesOnHover": true,
+            "description": "Shows possible layered concentration of business customers Deposit Accounts."
+          },
+          "id": "d08bd60e-46e9-4e38-ba90-6a4b8596dcc2",
+          "schema": [
+            [
+              "Customer",
+              "cleanName",
+              "firstName",
+              "accountHolderID",
+              "lastName",
+              "fraudScore",
+              "entityResolution",
+              "gender",
+              "accountName"
+            ],
+            [
+              "AccountHolder",
+              "cleanName",
+              "firstName",
+              "accountHolderID",
+              "lastName",
+              "fraudScore",
+              "entityResolution",
+              "gender",
+              "accountName",
+              "businessName",
+              "FinCEN_110_status"
+            ],
+            [
+              "DepositAccount",
+              "accountID",
+              "accountHolderID",
+              "dateOpened",
+              "balance",
+              "accountType",
+              "accountNumber"
+            ],
+            [
+              "Transaction",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "ACH",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "ExternalAccount",
+              "accountID",
+              "accountNumber"
+            ],
+            [
+              "BusinessCustomer",
+              "cleanName",
+              "accountHolderID",
+              "fraudScore",
+              "accountName",
+              "businessName",
+              "entityResolution",
+              "FinCEN_110_status"
+            ]
+          ]
+        },
+        {
+          "title": "Business Account Details",
+          "query": "MATCH  (ba:StreetAddress)<-[r:BUSINESS_ADDRESS]-(ah)-[:HAS_ACCOUNT]->(da:DepositAccount{accountHolderID: $neodash_depositaccount_accountholderid})\nRETURN ah.businessName AS AccountName, da.balance AS Balance, ah.fraudScore AS FraudScore, ba.streetAddress AS Street, ba.cityName AS City, ba.postalCode AS PostalCode;\n\n\n",
+          "width": 6,
+          "height": 6,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "transposed": true,
+            "description": "Customer Account Details Table",
+            "compact": false
+          },
+          "id": "aaac7640-a7ed-43f5-8941-e6b47be8f0ef"
+        },
+        {
+          "title": "Watch List Entry for Account",
+          "query": "MATCH (da:DepositAccount{accountHolderID: $neodash_depositaccount_accountholderid})<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(wl:WatchList)\nRETURN wl.basis AS Basis, wl.watchEntityName AS Name, wl.riskFactor AS FraudScore\n\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 0,
+          "y": 8,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "description": "Shows Entry of Account on Watch List with associated Person.",
+            "columnWidths": "[0.4,0.4,0.2]"
+          },
+          "id": "bc259d48-9f2e-4da3-b6de-ab1377b0ef13"
+        },
+        {
+          "title": "Transactions involved",
+          "query": "MATCH (cu1:AccountHolder)-[:HAS_ACCOUNT]->(da1:DepositAccount)-[:WITHDRAWALS]->(txn1)-[:DEBITS]->(acctB)-[:CREDITS]->(txn2)-[:DEPOSITS]->(da2:DepositAccount{accountHolderID:$neodash_depositaccount_accountholderid})<-[:HAS_ACCOUNT]-(cu2:AccountHolder)\nWHERE id(da1)<>id(da2) \nAND txn1.transactionDate <= date(\"2019-08-01\") \nAND txn1.transactionDate >= date(\"2019-06-27\") \nAND txn2.transactionDate>=txn1.transactionDate \nAND duration.inDays(txn1.transactionDate,txn2.transactionDate).days < 30.000000 \nAND txn2.amount > abs(txn1.amount) * 0.600000 \nAND txn2.amount < abs(txn1.amount) \nAND abs(txn1.amount) > 500.000000\nReturn da1.accountNumber AS FromAccount, txn1.transactionDate AS FromDate, txn1.amount AS FromAmount, txn2.amount AS ToAmount, txn2.transactionDate AS ToDate, da2.accountNumber AS ToAccount \n\n\n",
+          "width": 16,
+          "height": 6,
+          "x": 8,
+          "y": 8,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "columnWidths": "[0.2,0.15,0.15,0.15,0.15,0.2]",
+            "compact": false,
+            "description": "List all involved transactions from outgoing Deposit Account to incoming Deposit Account."
+          },
+          "id": "8bf1d3ff-d30e-4ef0-a30e-4531c49491a2"
+        },
+        {
+          "title": "Account Person - Fraud Level Indication",
+          "query": "MATCH (da:DepositAccount{accountHolderID: $neodash_depositaccount_accountholderid})<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(wl:WatchList)\nRETURN wl.riskFactor*100 AS FraudScore ORDER BY FraudScore LIMIT 1\n\n\n",
+          "width": 8,
+          "height": 4,
+          "x": 0,
+          "y": 10,
+          "type": "gauge",
+          "selection": {},
+          "settings": {},
+          "id": "e8272d46-f176-4e31-bfca-9c74df8dde15"
+        }
+      ]
+    },
+    {
+      "title": "AML - Investigate High Risk Geo",
+      "reports": [
+        {
+          "title": "Search Corporate Customer ID",
+          "query": "MATCH (n:`BusinessCustomer`) \nWHERE toLower(toString(n.`accountHolderID`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`accountHolderID` as value,  n.`accountHolderID` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 8,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "BusinessCustomer",
+            "propertyType": "accountHolderID",
+            "propertyTypeDisplay": "accountHolderID",
+            "parameterName": "neodash_businesscustomer_accountholderid",
+            "description": "Search for Business Account IDs (e.g. 50637)."
+          },
+          "id": "b55a32d6-8bd8-4c2a-8741-c30341c388d7"
+        },
+        {
+          "title": "Possible related Business Accounts",
+          "query": "MATCH p1=(da:DepositAccount{accountHolderID:$neodash_businesscustomer_accountholderid})<-[:HAS_ACCOUNT]-(ah:AccountHolder)-[:ENTITY_RESOLUTION]->()\nReturn p1\n\n\n",
+          "width": 16,
+          "height": 6,
+          "x": 8,
+          "y": 8,
+          "type": "graph",
+          "selection": {
+            "DepositAccount": "(label)",
+            "AccountHolder": "(label)",
+            "BusinessCustomer": "(label)"
+          },
+          "settings": {
+            "relationshipParticles": false,
+            "showPropertiesOnHover": true
+          },
+          "id": "2a0a9545-4099-45b5-8d61-fb0396a6b773"
+        },
+        {
+          "title": "Corparate Account Details",
+          "query": "MATCH (ba:StreetAddress)<-[r:BUSINESS_ADDRESS]-(ah)-[:HAS_ACCOUNT]->(da:DepositAccount{accountHolderID:$neodash_businesscustomer_accountholderid})-[:WITHDRAWALS]->(xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->(iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country) WHERE xfer.transactionDate <= date(\"2019-08-01\") AND xfer.transactionDate >= date(\"2019-06-27\") AND left(iban.ibanNumber,2)=cty.countryCode AND cty.fraudScore > 0.600000  \nRETURN ah.businessName AS AccountName, da.balance AS Balance, ah.fraudScore AS FraudScore, ba.streetAddress AS Street, ba.cityName AS City, ba.postalCode AS PostalCode;\n\n\n",
+          "width": 8,
+          "height": 6,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "transposed": true
+          },
+          "id": "909b6f60-a3cf-403e-8ccb-e658f7d70367"
+        },
+        {
+          "title": "Corporates on High Risk Geo and Watch List",
+          "query": "MATCH p1=(ah)-[:HAS_ACCOUNT]->(da:DepositAccount{accountHolderID:$neodash_businesscustomer_accountholderid})-[:WITHDRAWALS]->(xfer:Wire:Transaction)-[:RECEIVES_WIRE]->(ext:ExternalAccount)-[:IBAN_ROUTING]->(iban:IBAN_Code)<-[:HAS_IBAN_CODE]-(fi:FinancialInstitution)-[:OPERATES_IN]->(cty:Country) WHERE xfer.transactionDate <= date(\"2019-08-01\") AND xfer.transactionDate >= date(\"2019-06-27\") AND left(iban.ibanNumber,2)=cty.countryCode AND cty.fraudScore > 0.600000\nMATCH p2= (da:DepositAccount{accountHolderID:$neodash_businesscustomer_accountholderid})<-[:HAS_ACCOUNT]-(cu)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(:WatchList)\nReturn p1,p2\n\n\n",
+          "width": 16,
+          "height": 8,
+          "x": 8,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "AccountHolder": "(label)",
+            "BusinessCustomer": "(label)",
+            "DepositAccount": "(label)",
+            "Transaction": "(label)",
+            "Wire": "(label)",
+            "ExternalAccount": "(label)",
+            "IBAN_Code": "(label)",
+            "FinancialInstitution": "(label)",
+            "Country": "(label)",
+            "External": "(label)",
+            "WatchList": "(label)"
+          },
+          "settings": {
+            "showPropertiesOnHover": true,
+            "description": "Corporate customers making transactions with high risk geo locations and being watch listed."
+          },
+          "id": "eff643f2-9413-4fb4-945d-9f6130636725"
+        },
+        {
+          "title": "Watch List Entry for Account",
+          "query": "MATCH (da:DepositAccount{accountHolderID: $neodash_businesscustomer_accountholderid})<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(wl:WatchList)\nRETURN wl.basis AS Basis, wl.watchEntityName AS Name, wl.riskFactor AS FraudScore\n\n\n\n",
+          "width": 8,
+          "height": 2,
+          "x": 0,
+          "y": 8,
+          "type": "table",
+          "selection": {},
+          "settings": {},
+          "id": "6ef059dc-6c93-430f-984f-bad5be7b93b0"
+        },
+        {
+          "title": "Account Person - Fraud Level Indication",
+          "query": "MATCH (da:DepositAccount{accountHolderID: $neodash_businesscustomer_accountholderid})<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(wl:WatchList)\nRETURN wl.riskFactor*100 AS FraudScore ORDER BY FraudScore LIMIT 1\n\n\n\n",
+          "width": 8,
+          "height": 4,
+          "x": 0,
+          "y": 10,
+          "type": "gauge",
+          "selection": {},
+          "settings": {},
+          "id": "7a0c9ddb-2372-4bf0-9f49-e24690188836"
+        }
+      ]
+    },
+    {
+      "title": "AML - Rapid Movement Investigation",
+      "reports": [
+        {
+          "title": "Accounts on Watchlist",
+          "query": "MATCH  (ah:AccountHolder)-[:HAS_ACCOUNT]->(da:DepositAccount{accountHolderID: $neodash_depositaccount_accountholderid_5})\nRETURN  ah.accountName AS Name, toString(ah.accountHolderID) AS AccountID, da.balance AS Balance, ah.fraudScore AS FraudScore;\n",
+          "width": 8,
+          "height": 4,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "compact": false,
+            "columnWidths": "[0.3,0.1,0.15,0.45]",
+            "description": "Customers on Watch List with High Risk Factor"
+          },
+          "id": "43818ed8-5779-4f6c-baf0-16beb0dc9bdd"
+        },
+        {
+          "title": "Watch List Name - Connected Nodes",
+          "query": "MATCH p3=(ext:ExternalAccount)-[:SENDS_WIRE]->(wire:Wire:Transaction)-[:DEPOSITS]->(acct:DepositAccount{accountHolderID:$neodash_depositaccount_accountholderid_5})-[:WITHDRAWALS]->(cash:Cash:Transaction)-[:OCCURS_AT]->(ATMLocation) WHERE cash.transactionDate>=wire.transactionDate AND duration.inDays(wire.transactionDate,cash.transactionDate).days <= 10.000000\nReturn p3\n\n\n",
+          "width": 16,
+          "height": 10,
+          "x": 8,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "ExternalAccount": "(label)",
+            "Transaction": "(label)",
+            "Wire": "(label)",
+            "DepositAccount": "(label)",
+            "Cash": "(label)",
+            "ATMtxn": "(label)",
+            "ATMLocation": "(label)",
+            "BranchLocation": "(label)"
+          },
+          "settings": {
+            "frozen": false,
+            "nodePositions": {}
+          },
+          "id": "908b6450-bf34-416b-8dfa-085bfa08be33",
+          "schema": [
+            [
+              "ExternalAccount",
+              "accountID",
+              "accountNumber"
+            ],
+            [
+              "Transaction",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "Wire",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "DepositAccount",
+              "accountID",
+              "accountHolderID",
+              "dateOpened",
+              "balance",
+              "accountType",
+              "accountNumber"
+            ],
+            [
+              "Cash",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "ATMtxn",
+              "accountID",
+              "amount",
+              "transactionDate",
+              "transactionID"
+            ],
+            [
+              "ATMLocation",
+              "bankID",
+              "locationID"
+            ],
+            [
+              "BranchLocation",
+              "bankID",
+              "locationID"
+            ]
+          ]
+        },
+        {
+          "title": "Account Owner Selection",
+          "query": "MATCH (n:`DepositAccount`) \nWHERE toLower(toString(n.`accountHolderID`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`accountHolderID` as value,  n.`accountHolderID` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 8,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "DepositAccount",
+            "overridePropertyDisplayName": true,
+            "defaultValue": "$neodash_watchlist_watchentityname_2",
+            "suggestionLimit": 5,
+            "clearParameterOnFieldClear": true,
+            "manualPropertyNameSpecification": true,
+            "propertyType": "accountHolderID",
+            "propertyTypeDisplay": "accountHolderID",
+            "parameterName": "neodash_depositaccount_accountholderid_5",
+            "id": "5",
+            "description": "Search for Consumer Account ID to investigate in Rapid Movement of Funds or Rapid Deposits (e.g. 48942, etc.)"
+          },
+          "id": "c366a4d7-3c80-4a28-953a-d9698a13c0c4"
+        },
+        {
+          "title": "",
+          "query": "MATCH (da)<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-()-[:IS_LISTED_ON]->(:WatchList)\nWITH cu as item, count(r)* 10 as score\nRETURN item,score,\n{phase2:{name:\"Watch List\", score: score, query: apoc.text.format(\"MATCH p2= (da:DepositAccount{accountHolderID:$customerID})<-[:HAS_ACCOUNT]-(cu:BusinessCustomer)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(:WatchList) RETURN p2\",[] )}} AS details\n\n\n",
+          "width": 18,
+          "height": 4,
+          "x": 0,
+          "y": 20,
+          "type": "table",
+          "selection": {},
+          "settings": {},
+          "id": "2947a836-3aa5-4686-8402-6e5f6ad64f54"
+        },
+        {
+          "title": "Accounts on Watchlist",
+          "query": "MATCH (n:WatchList) \nRETURN n.watchEntityName AS Name, n.riskFactor AS RiskFactor, n.basis, n.rationale AS Rationale ORDER BY RiskFactor DESC\nLIMIT 100;\n\n",
+          "width": 12,
+          "height": 6,
+          "x": 0,
+          "y": 14,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "compact": false,
+            "columnWidths": "[0.3,0.1,0.15,0.45]",
+            "description": "Customers on Watch List with High Risk Factor",
+            "actionsRules": [
+              {
+                "condition": "Click",
+                "field": "",
+                "value": "",
+                "customization": "set variable",
+                "customizationValue": ""
+              }
+            ]
+          },
+          "id": "7a7f4bc5-a511-4cfa-b954-417f7015d861"
+        },
+        {
+          "title": "Account Person - Fraud Level Indication",
+          "query": "MATCH (da:DepositAccount{accountHolderID: $neodash_depositaccount_accountholderid_5})<-[:HAS_ACCOUNT]-(cu:AccountHolder)-[r:MAKES_PAYMENTS_TO]-(cus)-[:IS_LISTED_ON]->(wl:WatchList)\nRETURN wl.riskFactor*100 AS FraudScore ORDER BY FraudScore LIMIT 1\n\n\n\n",
+          "width": 8,
+          "height": 4,
+          "x": 0,
+          "y": 6,
+          "type": "gauge",
+          "selection": {},
+          "settings": {},
+          "id": "96d7d0a7-2881-4b60-9fe5-9ec627802e1f"
+        }
+      ]
+    }
+  ],
+  "parameters": {},
+  "extensions": {
+    "advanced-charts": {
+      "active": true
+    },
+    "styling": {
+      "active": true
+    },
+    "active": true,
+    "activeReducers": [
+      "DASHBOARD/EXTENSIONS/QUERY_TRANSLATOR/"
+    ],
+    "actions": {
+      "active": true
+    },
+    "query-translator": {
+      "active": true
+    }
+  }
+}
